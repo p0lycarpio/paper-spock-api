@@ -4,9 +4,8 @@ def game(choix):
     roles = {0: "pierre", 1: "papier", 2: "ciseaux", 3: "lezard", 4: "spock"}
     choix = int(choix)
 
-# L'ordi choisit un nombre random sauf celui du joueur.
     if(0 <= choix and choix < 5):
-        ordi = random.choice([ele for ele in roles.keys() if ele != choix])
+        ordi = random.choice([ele for ele in roles.keys() if ele != choix]) # L'ordi choisit un nombre random sauf celui du joueur.
 
         true_table = ([
         # 0=lose, 1=win, 2=draw.
@@ -18,8 +17,7 @@ def game(choix):
             [1,0,1,0,2] #Spock
         ])
 
-# Parcourir la true table en fonction du nb joueur et ordi
-        process = true_table[choix][ordi]
+        process = true_table[choix][ordi] # Parcourir la true table en fonction du nb joueur et ordi
 
         if process == 0:
             return({"result" : "Vous avez perdu",
@@ -27,11 +25,15 @@ def game(choix):
                 "ordi": roles[ordi],
                 "joueur" : roles[choix]}
             })
+
         elif process == 1:
             return({"result" : "Vous avez gagné",
             "jeu":{
                 "ordi": roles[ordi],
                 "joueur" : roles[choix]}
             })
+
         else:
             return({2 : "Égalité"})
+    else:
+        return({0 : "Veuillez choisir un chiffre compris entre 0 et 4"})

@@ -14,16 +14,25 @@ class HelloWorld(Resource):
 @api.doc(params={"x": "Must be an integer"})
 class PlusOne(Resource):
     def get(self, x):
-        result = game(x)
-        return result
+        try:
+            x = int(x)
+        except ValueError:
+            return({0 : "Votre valeur n'est pas un entier"})
+        else:
+            result = game(x)
+            return result
 
 @api.route('/square/')
 @api.doc(params={"x": "Must be an integer"}, location="query")
 class Square(Resource):
     def get(self):
-        x = int(request.args.get('x', 0))
-        result = game(x)
-        return result
+        try:
+            x = int(request.args.get('x', 0))
+        except ValueError:
+            return({0 : "Votre valeur n'est pas un entier"})
+        else:
+            result = game(x)
+            return result
 
 
 if __name__ == '__main__':
